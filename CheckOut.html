@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Out</title>
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Poppins&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* General container styling */
+        .container {
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f2f2f2;
+            min-height: 100vh;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links li {
+            list-style: none;
+            display: inline-block;
+            margin-left: 20px;
+            font-size: 18px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        /* Heading styling */
+        .heading {
+            text-align: center;
+            margin: 30px 0;
+            color: #333;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        /* Styling for combined form container */
+        .formContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form headings */
+        .formContainer h2 {
+            color: #B045D2;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        /* Input styling */
+        .formContainer input[type="text"],
+        .formContainer input[type="radio"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #B045D2;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .formContainer input[type="radio"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        /* Payable amount styling */
+        .payableAmount {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            font-size: 18px;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .payableAmount p {
+            font-weight: bold;
+            color: #B045D2;
+        }
+
+        /* Payment options styling */
+        .paymentOptions label {
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        /* Submit button styling */
+        .formContainer button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: #B045D2;
+            color: #ffffff;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .formContainer button[type="submit"]:hover {
+            background-color: #a033c7;
+        }
+
+        /* Checkout items styling */
+        .checkout-item {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .checkout-item p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- NavBar -->
+        <nav class="navbar">
+            <div>
+                <img class="logo" src="logo.jpg" alt="">
+            </div>
+            <ul class="nav-links">
+                <li><a href="Home.html">Home</a></li>
+                
+            </ul>
+        </nav>
+
+        <!-- Heading -->
+        <div class="heading">
+            <h1>CheckOut</h1>
+        </div>
+
+        <!-- Combined Form -->
+        <div class="formContainer">
+            <form action="https://api.web3forms.com/submit" method="POST" id="checkoutForm">
+                <input type="hidden" name="access_key" value="b0d6c9a1-3592-495b-8684-61007f23d308">
+
+                <h2>Order Details</h2>
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="text" name="mobile" placeholder="Mobile Number" required>
+                <input type="text" name="address" placeholder="Address" required>
+                <input type="text" name="pincode" placeholder="Pincode" required>
+
+                <h2>Payment Details</h2>
+                <div id="checkout-items">
+                    <!-- Product details will be inserted here by JavaScript -->
+                </div>
+
+                <div class="payableAmount">
+                    <label>Total Amount:</label>
+                    <p class="totalPriceinCheckout"></p>
+                </div>
+
+                <div class="paymentOptions">
+                    <label>
+                        <input type="radio" name="paymentMethod" value="cod" required>
+                        Cash on Delivery
+                    </label>
+                    <label>
+                        <input type="radio" name="paymentMethod" value="payNow" required>
+                        Pay Now
+                    </label>
+                </div>
+
+                <!-- Hidden inputs for product details and total price -->
+                <input type="hidden" name="productDetails" id="hiddenProductDetails">
+                <input type="hidden" name="totalPrice" id="hiddenTotalPrice">
+
+                <button type="submit">Confirm Order</button>
+            </form>
+        </div>
+
+        <script>
+            // Show the total price
+            let totalPrice = localStorage.getItem('totalPrice');
+            document.querySelector('.totalPriceinCheckout').innerText = `₹${totalPrice}`;
+
+            // Populate the form with product details from localStorage
+            document.addEventListener('DOMContentLoaded', () => {
+                // Retrieve product details from localStorage
+                let storedProductDetails = JSON.parse(localStorage.getItem('productDetails'));
+                let checkoutItemsContainer = document.getElementById('checkout-items');
+                let productDetailsStr = '';
+
+                if (storedProductDetails && Object.keys(storedProductDetails).length > 0) {
+                    for (let productName in storedProductDetails) {
+                        // Create a new div element to display the product
+                        let productDiv = document.createElement('div');
+                        productDiv.classList.add('checkout-item');
+                        productDiv.innerHTML = `<p>Product: ${productName}</p><p>Quantity: ${storedProductDetails[productName]}</p>`;
+                        checkoutItemsContainer.appendChild(productDiv);
+
+                        // Append the product details to the hidden input string
+                        productDetailsStr += `${productName} (Quantity: ${storedProductDetails[productName]}), `;
+                    }
+                } else {
+                    checkoutItemsContainer.innerHTML = '<p>No items in the cart.</p>';
+                }
+
+                // Remove trailing comma and space
+                productDetailsStr = productDetailsStr.slice(0, -2);
+
+                // Set the hidden input values
+                document.getElementById('hiddenProductDetails').value = productDetailsStr;
+                document.getElementById('hiddenTotalPrice').value = totalPrice;
+            });
+        </script>
+
+</body>
+
+</html>
