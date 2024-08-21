@@ -11,6 +11,8 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
+    background-color: rgb(243, 243, 255);
+    margin: 0 8%;
 }
 
 
@@ -23,6 +25,7 @@ body {
 .logo {
     height: auto;
     width: 50px;
+    border-radius: 50%;
 }
 
 .nav-links {
@@ -88,7 +91,7 @@ body {
     list-style: none;
     column-gap: 5vw;
     padding: 2vh 4vh;
-    background-color: #e2acf3;
+    background-color: rgb(225, 188, 226);
     border-radius: 15px;
     align-items: center;
 }
@@ -96,7 +99,7 @@ body {
 .categories li {
     cursor: pointer;
     font-size: small;
-    color: #ba0bf0;
+    color: #b27cc2;
 }
 
 /* Free Shipping */
@@ -164,13 +167,18 @@ body {
 }
 
 .product button{
-    padding: 5px 10px;
+    padding: 10px 15px;
     border: none;
-    background-color: #e2acf3;
+    background:linear-gradient(90deg, #9034ac, #ff1d8e);
     border-radius: 20px;
     cursor: pointer;
-    font-size: small;
-    color:#B045D2;
+    font-size: x-small;
+    color:white;
+}
+
+.product button:active{
+    background: #333;
+    transition: 1s;
 }
 
 /* Cart tab */
@@ -271,6 +279,7 @@ body {
     background-color: #e2acf3;
     padding: 4vh;
     border-radius: 20px;
+    margin-bottom: 2%;
 }
 
 /* styling admin page */
