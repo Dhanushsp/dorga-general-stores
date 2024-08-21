@@ -96,21 +96,27 @@ body {
 .categories li {
     cursor: pointer;
     font-size: small;
-
+    color: #ba0bf0;
 }
 
 /* Free Shipping */
 
 .free-shipping {
-    padding: 10px;
+    padding: 5px 0;
     border-radius: 15px;
     text-align: center;
-    box-shadow: #B045D2 0px 5px 15px;
+    box-shadow: #c78ed8 0px 5px 15px;
+    width: 300px;
+    margin: auto;
 }
 
 .free-shipping h1 {
     color: #F22E8F;
-    
+    font-size: 2rem;
+}
+
+.free-shipping h2{
+    font-size: 1em;
 }
 
 /* search container */
@@ -139,7 +145,7 @@ body {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .product{
