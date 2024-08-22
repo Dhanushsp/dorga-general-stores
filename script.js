@@ -137,6 +137,11 @@ const changeQuantity =(product_id,type)=>{
     }
 }
 
+function clearAll(){
+    carts =[]
+    console.log(carts)
+}
+
 
 
 // Search Functionality

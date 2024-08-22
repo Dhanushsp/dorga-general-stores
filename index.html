@@ -80,7 +80,7 @@
 
         <div class="footer">
             <table>
-                
+
 
                 <td>
                     <tr>Contact: </tr>
@@ -97,8 +97,7 @@
         <h1><i class="fa-solid fa-cart-shopping"></i> Cart</h1>
 
         <div class="cart-list">
-
-
+            <p style="text-align: center;">Your cart is empty.</p>
 
         </div>
 
@@ -107,8 +106,9 @@
         </div>
 
         <div class="cart-btn">
+            <button class="clear-all">Clear</button>
             <button class="close">Close</button>
-            <a class="checkout" href="CheckOut.html" target="_blank"><button >Checkout</button></a>
+            <a class="checkout" href="checkout.html" target="_blank"><button>Checkout</button></a>
         </div>
     </div>
 
@@ -134,6 +134,7 @@
 
         let listProducts = [];
         let carts = [];
+        let totalPrice = [];
 
 
 
@@ -168,12 +169,6 @@
                 console.error(error);
             });
         }
-
-        // // Function to handle add to cart (for demo purposes, just alerts the product ID)
-        // function addToCart(productId) {
-        //     alert(`Product ${productId} added to cart!`);
-        //     // Here you can add more functionality, such as storing the cart items in local storage or a database
-        // }
 
         // Display products on page load
         displayProducts();
@@ -298,6 +293,19 @@
 
         }
 
+        // clear cart
+        let clearAll = document.querySelector('.clear-all')
+        clearAll.addEventListener('click', function () {
+            carts = [];
+            console.log(carts)
+            updateCartDisplay()
+            totalPrice = [];
+        });
+
+        function updateCartDisplay() {
+            listCartHTML.innerHTML = "<p style='text-align:center'>Your cart is empty.</p>";
+            
+        }
 
 
         // updating quantity when it is modified inside cart using plus and minus
