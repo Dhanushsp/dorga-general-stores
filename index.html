@@ -108,7 +108,7 @@
         <div class="cart-btn">
             <button class="clear-all">Clear</button>
             <button class="close">Close</button>
-            <a class="checkout" href="checkout.html" target="_blank"><button>Checkout</button></a>
+            <a class="checkout" href="CheckOut.html" target="_blank"><button>Checkout</button></a>
         </div>
     </div>
 
@@ -143,7 +143,12 @@
         // Function to display all products
         function displayProducts() {
             get(ref(db, 'products')).then((snapshot) => {
+
+                // removing caches on page reload
                 productsDiv.innerHTML = '';
+                localStorage.removeItem('carts');
+                localStorage.removeItem('productDetails');
+                localStorage.removeItem('totalPrice');
 
                 listProducts = [];
                 if (snapshot.exists()) {
@@ -162,6 +167,8 @@
                             <button class="addtocart")">Add to Cart</button>
                         `;
                         productsDiv.appendChild(productContainer);
+
+
                     });
 
                 }
@@ -300,11 +307,18 @@
             console.log(carts)
             updateCartDisplay()
             totalPrice = [];
+            addCartToHTML()
+            productDetails = {};
+
+            // Clear localStorage entries
+            localStorage.removeItem('carts');
+            localStorage.removeItem('productDetails');
+            localStorage.removeItem('totalPrice');
         });
 
         function updateCartDisplay() {
             listCartHTML.innerHTML = "<p style='text-align:center'>Your cart is empty.</p>";
-            
+
         }
 
 
@@ -320,6 +334,7 @@
                 }
                 changeQuantity(product_id, type);
             }
+
         })
 
         const changeQuantity = (product_id, type) => {
@@ -330,14 +345,20 @@
                         carts[positionItemInCart].quantity = carts[positionItemInCart].quantity + 1;
                         break;
 
-                    default:
+                    default: // Handling "minus" case
                         let valueChange = carts[positionItemInCart].quantity - 1;
                         if (valueChange > 0) {
                             carts[positionItemInCart].quantity = valueChange;
                         } else {
+                            // Remove the product from the cart if quantity is 0
                             carts.splice(positionItemInCart, 1)
+
+                            // Remove the product from productDetails in localStorage
+                            const productName = listProducts.find(product => product.id == product_id).name;
+                            delete productDetails[productName];
                         }
                         break;
+                        console.log(positionItemInCart)
                 }
                 addCartToMemory();
                 addCartToHTML();
