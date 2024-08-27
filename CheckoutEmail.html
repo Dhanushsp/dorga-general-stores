@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check Out to WhatsApp</title>
+    <title>Check Out</title>
+
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +15,148 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* General container styling */
+        .container {
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f2f2f2;
+            min-height: 100vh;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 5%;
+            border-radius: 15px;
+            align-items: center;
+            padding: 10px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links li {
+            list-style: none;
+            display: inline-block;
+            margin-left: 20px;
+            font-size: 18px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        /* Heading styling */
+        .heading {
+            text-align: center;
+            margin: 30px 0;
+            color: #333;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        /* Styling for combined form container */
+        .formContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form headings */
+        .formContainer h2 {
+            color: #B045D2;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        /* Input styling */
+        .formContainer input[type="text"],
+        .formContainer input[type="radio"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #B045D2;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .formContainer input[type="radio"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        /* Payable amount styling */
+        .payableAmount {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            font-size: 18px;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .payableAmount p {
+            font-weight: bold;
+            color: #B045D2;
+        }
+
+        /* Payment options styling */
+        .paymentOptions label {
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        /* Submit button styling */
+        .formContainer button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: #B045D2;
+            color: #ffffff;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .formContainer button[type="submit"]:hover {
+            background-color: #a033c7;
+        }
+
+        /* Checkout items styling */
+        .checkout-item {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .checkout-item p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
 
 </head>
 
@@ -40,7 +182,7 @@
 
         <!-- Combined Form -->
         <div class="formContainer">
-            <form id="checkoutForm">
+            <form action="https://api.web3forms.com/submit" method="POST" id="checkoutForm">
                 <input type="hidden" name="access_key" value="b0d6c9a1-3592-495b-8684-61007f23d308">
 
                 <h2>Order Details</h2>
@@ -74,7 +216,7 @@
                 <input type="hidden" name="productDetails" id="hiddenProductDetails">
                 <input type="hidden" name="totalPrice" id="hiddenTotalPrice">
 
-                <button type="button" onclick="sendWhatsAppMessage()">Confirm Order</button>
+                <button type="submit">Confirm Order</button>
             </form>
         </div>
 
@@ -112,42 +254,7 @@
                 document.getElementById('hiddenProductDetails').value = productDetailsStr;
                 document.getElementById('hiddenTotalPrice').value = totalPrice;
             });
-
-            function sendWhatsAppMessage() {
-                // Retrieve form values
-                const name = document.querySelector('input[name="name"]').value;
-                const mobile = document.querySelector('input[name="mobile"]').value;
-                const address = document.querySelector('input[name="address"]').value;
-                const pincode = document.querySelector('input[name="pincode"]').value;
-                const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-                const productDetails = document.getElementById('hiddenProductDetails').value;
-                const totalPrice = document.getElementById('hiddenTotalPrice').value;
-
-                // Format the message
-                const message = encodeURIComponent(`
-                    *Order Details:*
-                    Name: ${name}
-                    Mobile Number: ${mobile}
-                    Address: ${address}
-                    Pincode: ${pincode}
-                    Payment Method: ${paymentMethod}
-                    Total Amount: ₹${totalPrice}
-                    
-                    *Products:*
-                    ${productDetails}
-                    
-                `);
-
-                // WhatsApp API URL
-                const adminWhatsAppNumber = '9345788084'; // Replace with admin's WhatsApp number
-                const whatsappURL = `https://wa.me/${adminWhatsAppNumber}?text=${message}`;
-
-                // Open WhatsApp
-                window.open(whatsappURL, '_blank');
-            }
         </script>
-
-    </div>
 
 </body>
 

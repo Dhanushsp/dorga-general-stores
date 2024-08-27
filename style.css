@@ -491,6 +491,111 @@ body {
 }
 
 
+/* checkout page */
+  /* Heading styling */
+  .heading {
+    text-align: center;
+    margin: 30px 0;
+    color: #333;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+/* Styling for combined form container */
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Form headings */
+.formContainer h2 {
+    color: #B045D2;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+/* Input styling */
+.formContainer input[type="text"],
+.formContainer input[type="radio"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #B045D2;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.formContainer input[type="radio"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+/* Payable amount styling */
+.payableAmount {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    font-size: 18px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+
+.payableAmount p {
+    font-weight: bold;
+    color: #B045D2;
+}
+
+/* Payment options styling */
+.paymentOptions label {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+/* Submit button styling */
+.formContainer button[type="button"] {
+    width: 100%;
+    padding: 15px;
+    background-color: #B045D2;
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.formContainer button[type="button"]:hover {
+    background-color: #a033c7;
+}
+
+/* Checkout items styling */
+.checkout-item {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.checkout-item p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #333;
+}
+
 
 
 /* media querie */
