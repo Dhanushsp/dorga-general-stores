@@ -188,15 +188,19 @@
         let listCartHTML = document.querySelector('.cart-list')
         let iconCartSpan = document.querySelector('.nav-cart span')
 
+        // hide and show Cart
+        navCart.addEventListener('click', function(event) {
+            event.stopPropagation();
+            cart.classList.toggle('show');
+        });
 
+        document.addEventListener('click', function() {
+            cart.classList.remove('show');
+        });
 
-        navCart.addEventListener('click', function () {
-            cart.style.right = 0;
-        })
-
-        closeCart.addEventListener('click', function () {
-            cart.style.right = '-400px';
-        })
+        navCart.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
 
 
         listProductHTML.addEventListener('click', (event) => {
