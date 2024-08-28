@@ -387,7 +387,7 @@
                     productContainer.classList.add('product');
                     productContainer.dataset.id = product.id;
                     productContainer.innerHTML = `
-                <img class="product-image" src="${product.image}" alt="${product.name}">
+                <div class="product-image"><img src="${product.image}" alt="${product.name}"></div>
                 <p class="product-name"><strong>${product.name}</strong></p>
                 <p class="product-price">Price: ₹${product.price}</p>
                 <button class="addtocart">Add to Cart</button>
